@@ -1,0 +1,23 @@
+{
+  "timeZone": "America/New_York",
+  "dependencies": {},
+  "exceptionLogging": "STACKDRIVER",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/gmail.addons.execute",
+    "https://www.googleapis.com/auth/script.external_request"
+  ],
+  "runtimeVersion": "V8",
+  "urlFetchWhitelist": [
+    "https://gmail-gemini-organizer-aemhrio76a-uc.a.run.app/"
+  ],
+  "gmail": {
+    "name": "Gemini Email Organizer",
+    "logoUrl": "https://www.gstatic.com/images/icons/material/system/2x/label_googblue_24dp.png",
+    "contextualTriggers": [
+      {
+        "unconditional": {},
+        "onTriggerFunction": "onGmailHomepage"
+      }
+    ]
+  }
+}

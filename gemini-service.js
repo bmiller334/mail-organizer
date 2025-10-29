@@ -5,9 +5,9 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Function to categorize an email using the Gemini API
 async function categorizeEmail(emailContent, exampleEmails) {
-  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
+  // Switched to the stable 'gemini-pro' model
+  const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
 
-  // Create a dynamic prompt with examples from existing labels
   let prompt = `Analyze the following email and categorize it into one of the existing user-created labels.
 
 Email Subject: "${emailContent.subject}"
@@ -22,7 +22,7 @@ Here are the available labels and some examples of emails within them:
   for (const label of availableLabels) {
     prompt += `\n--- Label: ${label} ---\n`;
     if (exampleEmails[label] && exampleEmails[label].length > 0) {
-      for (const example of exampleEmails[label].slice(0, 2)) { // Use up to 2 examples
+      for (const example of exampleEmails[label].slice(0, 2)) {
         prompt += `- Subject: "${example.subject}", Body: "${example.body.substring(0, 100)}..."\n`;
       }
     } else {
@@ -35,12 +35,14 @@ Here are the available labels and some examples of emails within them:
   try {
     const result = await model.generateContent(prompt);
     const response = await result.response;
+    
+    console.log('Raw Gemini Response Text:', response.text());
+
     // Clean up the response to get only the label name
     const category = response.text().trim().replace(/[^a-zA-Z0-9\s/_-]/g, '');
     return category;
   } catch (error) {
     console.error('Error categorizing email with Gemini:', error);
-    // Fallback to a default category or handle the error as needed
     return 'Uncategorized';
   }
 }
