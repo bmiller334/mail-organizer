@@ -1,19 +1,19 @@
 {
-  "name": "gemini-demo",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "gmail-gemini-organizer",
+  "version": "1.0.0",
+  "description": "A backend app to organize your Gmail inbox with the Gemini API.",
+  "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "node index.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@google/genai": "^1.0.1",
-    "base64-js": "^1.5.1",
-    "markdown-it": "^13.0.2"
-  },
-  "devDependencies": {
-    "vite": "^6.3.5"
+    "@google-cloud/pubsub": "^5.2.0",
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^16.4.5",
+    "express": "^5.1.0",
+    "googleapis": "^140.0.0"
   }
 }
