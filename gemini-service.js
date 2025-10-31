@@ -1,9 +1,14 @@
 const { VertexAI } = require('@google-cloud/vertexai');
+const { GoogleAuth } = require('google-auth-library');
 
-// Initialize Vertex AI
+// Initialize Vertex AI with application default credentials
+const auth = new GoogleAuth({
+  scopes: 'https://www.googleapis.com/auth/cloud-platform'
+});
 const vertex_ai = new VertexAI({
   project: process.env.GOOGLE_CLOUD_PROJECT,
   location: 'us-central1',
+  auth: auth
 });
 
 // Configure the model
