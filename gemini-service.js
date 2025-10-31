@@ -1,11 +1,11 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenAI } = require('@google/genai');
 
 // Configure the Gemini API client
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = new GoogleGenAI(process.env.GEMINI_API_KEY);
 
 // Function to categorize an email using the Gemini API
 async function categorizeEmail(emailContent, exampleEmails) {
-  // Switched to the stable, versioned 'gemini-1.0-pro' model to avoid API version issues
+  // Switched to a current, stable model. The new library will use the v1 API by default.
   const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
   let prompt = `Analyze the following email and categorize it into one of the existing user-created labels.
