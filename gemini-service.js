@@ -5,8 +5,12 @@ const { GoogleAuth } = require('google-auth-library');
 const auth = new GoogleAuth({
   scopes: 'https://www.googleapis.com/auth/cloud-platform'
 });
+
+// Use environment variable or fallback to the specific project ID from logs
+const projectId = process.env.GOOGLE_CLOUD_PROJECT || 'gemailernew';
+
 const vertex_ai = new VertexAI({
-  project: process.env.GOOGLE_CLOUD_PROJECT,
+  project: projectId,
   location: 'us-central1',
   auth: auth
 });
