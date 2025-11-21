@@ -18,7 +18,7 @@ const vertex_ai = new VertexAI({
 // Configure the model
 // Note the Vertex AI model name is slightly different
 const model = vertex_ai.getGenerativeModel({
-  model: 'gemini-1.5-flash-001',
+  model: 'gemini-1.5-flash-002',
 });
 
 // Function to categorize an email using the Vertex AI API
